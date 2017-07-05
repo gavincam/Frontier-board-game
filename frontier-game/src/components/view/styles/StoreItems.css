@@ -1,0 +1,23 @@
+.store-item {
+    display: inline-block;
+	margin: 0 1rem 1rem 0;
+    background-color: #1A2B33;
+    border-radius: 4px;
+	padding:1rem;
+}
+
+.store-item:last-child {
+	margin-right:0;
+}
+
+.store span {
+    border: none;
+    text-align: center;
+    font-size: 2rem;
+    display: block;
+	color: white;
+}
+
+.store img {
+    height: 3.8rem;
+}

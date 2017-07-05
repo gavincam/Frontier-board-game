@@ -1,0 +1,142 @@
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    /*animation: App-logo-spin infinite 20s linear;*/
+    height: 30px;
+    margin-top:2rem;
+}
+*{
+    border:0;
+    margin:0;
+    padding:0;
+}
+
+html,body,input{
+    font-size: 16px;
+    font-family: 'Bitter', serif;
+}
+body {
+    background-color: #11232B;
+}
+
+h1,h2,h3,h4,h5,h6,p,span,button,input {
+    font-family: 'Bitter', serif;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.App-header {
+    
+    height: 100px;
+    padding: 20px;
+    color: white;
+}
+
+.App-intro {
+    font-size: large;
+}
+
+@keyframes App-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.panel-heading {
+    display:inline-block;
+}
+
+.container {
+    margin: 2rem 1rem;
+}
+
+.resources {
+    display: inline-block;
+}
+
+input {
+    line-height: 2rem;
+    border-radius: 3px;
+    border: 1px solid #202b2b;
+    padding-left: 1rem;
+    background-color: #11232B;
+    color: lightgray;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+h1,h2,h3{
+    color: #E64F48;
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+label {
+    color: gray;
+    margin: 1rem 0 0.5rem;
+    display: inline-block;
+}
+
+.group {
+    border: 1px solid #202b2b;
+    border-radius: 0.3rem;
+    /*max-width: 360px;*/
+    margin: 2rem auto;
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.counter {
+    margin-bottom:1rem;
+    background-color: #1A2B33;
+    border-radius: 4px;
+}
+.counter input {
+    border: none;
+    width: 3rem;
+    text-align: center;
+    padding-left: 0;
+    font-size: 2rem;
+    background-color: transparent;
+}
+
+.counter img {
+    height: 3.8rem;
+    padding-left:10px;
+}
+
+.counter > div {
+    display: inline-block;
+    vertical-align: 100%;
+} 

@@ -1,0 +1,59 @@
+button {
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: inherit;
+    height: 2rem;
+    border-radius: 0.2rem;
+    padding: 0.5rem 1rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+}
+
+.btn-remove {
+    height: 2rem;
+    padding: 0 0.25rem;
+    display: inline-block;
+    background-color: #E64F48;
+    color: white;
+    border-radius: 1.5rem;
+    vertical-align: bottom;
+    margin-left: 1rem;
+}
+
+button i {
+    vertical-align: bottom;
+}
+
+.btn-secondary {
+    margin-bottom: 2rem;
+    height: 3rem;
+    background-color: #11232B;
+    color: gray;
+    border: 1px solid #505050;
+}
+
+.btn-next {
+    
+    height: 3rem;
+    background: #E64F48;
+    color: white;
+    display: block;
+    margin:0 auto 3rem;
+}
+
+.counter button {
+    background-color: transparent;
+    color: grey;
+    height: inherit;
+}
+
+.counter i {
+    font-size:2rem;
+}
+
+
+
+
+
+
+
