@@ -12,6 +12,7 @@ class ResourceStore extends Component {
     render() {
         let dataType = this.props.dataType;
         let dataValue = this.props.dataValue;
+
         
         return (
             

@@ -23,13 +23,7 @@ import ironImage from '../../images/iron.png';
 class PlayerComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            perTurnAmount: {Wood: 0, Stone: 0, Livestock: 0, Wheat:0, Iron: 0},
-            playerName:'',
-            storedAmount: {Wood: 5, Stone: 0, Livestock: 0, Wheat:0, Iron: 0},
-            shoppingCart: {soldier:0, Horseman:0, Cannon:0, Ship:0, Settler:0, City:0, Road:0, Wall:0},
-            unitsAvailableToBuy:{soldier:false, Horseman:false, Cannon:false, Ship:false, Settler:false, City:false, Road:false, Wall:false}
-        }
+        
         this._removePlayer = this._removePlayer.bind(this);
         //this.addOneResource = this.addOneResource.bind(this);
         //this.minusOneResource = this.minusOneResource.bind(this)
@@ -81,15 +75,15 @@ class PlayerComponent extends Component {
         } 
 
         //CHECK ENOUGH RESOURCES TO PURCHASE
-        let storedWood = Object.values(this.state.storedAmount)[0];
-        let storedStone = Object.values(this.state.storedAmount)[1];
-        let storedWheat = Object.values(this.state.storedAmount)[2];
-        let storedLivestock = Object.values(this.state.storedAmount)[3];
-        let storedIron = Object.values(this.state.storedAmount)[4];
+        // let storedWood = Object.values(this.state.storedAmount)[0];
+        // let storedStone = Object.values(this.state.storedAmount)[1];
+        // let storedWheat = Object.values(this.state.storedAmount)[2];
+        // let storedLivestock = Object.values(this.state.storedAmount)[3];
+        // let storedIron = Object.values(this.state.storedAmount)[4];
 
-        if (storedWood >= 5 && storedStone >= 0 && storedWheat >= 5 && storedLivestock >= 0 && storedIron >= 0) {
-            //this.isAvailabletoBuy();
-        }
+        // if (storedWood >= 5 && storedStone >= 0 && storedWheat >= 5 && storedLivestock >= 0 && storedIron >= 0) {
+        //     //this.isAvailabletoBuy();
+        // }
         //console.log(this.state.unitsAvailableToBuy["soldier"]);
         
         //console.log(this.props.playerInfo)

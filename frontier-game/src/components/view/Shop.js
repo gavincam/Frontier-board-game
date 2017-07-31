@@ -29,7 +29,7 @@ class Shop extends Component {
 		return(
 			<div>
 				<section className="store">
-					<h3>Resources available</h3>
+					<h3>Resources available</h3> 
 					<ResourceStore image={woodImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[0]} dataValue={Object.values(this.props.playerInfo.storedAmount)[0]} />
 					<ResourceStore image={stoneImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[1]} dataValue={Object.values(this.props.playerInfo.storedAmount)[1]} />
 					<ResourceStore image={livestockImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[2]} dataValue={Object.values(this.props.playerInfo.storedAmount)[2]} />

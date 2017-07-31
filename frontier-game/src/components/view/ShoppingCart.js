@@ -27,8 +27,8 @@ class ShoppingCart extends Component {
                 <div className="store-item">
                     <img src={this.props.image} alt={dataType} label={dataType} />
                     
-                        <button onClick={this._minusOneUnit}><i className="material-icons">remove</i></button>
-                        <span>{dataValue}</span>
+                    <button onClick={this._minusOneUnit}><i className="material-icons">remove</i></button>
+                    <span>{dataValue}</span>
                     <button onClick={this._addOneUnit}><i className="material-icons">add</i></button>
                 </div>
             </div>
