@@ -64,7 +64,7 @@ class PlayerComponent extends Component {
     render() {
         
         let classAdded = "container";
-        if (this.props.showData) {
+        if (this.props.showAllPlayersResources) {
             classAdded = "resources container"
         }
 
@@ -92,7 +92,7 @@ class PlayerComponent extends Component {
         return (
             
             <div className={classAdded}>
-                { this.props.showData ? 
+                { this.props.showAllPlayersResources ? 
                 <div>
                     <div className="panel-heading">
                         <h3>{notEmptyName}</h3>
@@ -106,26 +106,7 @@ class PlayerComponent extends Component {
                             <Counter image={wheatImage} dataType={Object.keys(this.props.playerInfo.perTurnAmount)[3]} dataValue={Object.values(this.props.playerInfo.perTurnAmount)[3]} minusOneResource={this.props.minusOneResource} addOneResource={this.props.addOneResource} arrPosition={this.props.arrPosition} storeType="perTurnAmount"/>
                             <Counter image={ironImage} dataType={Object.keys(this.props.playerInfo.perTurnAmount)[4]} dataValue={Object.values(this.props.playerInfo.perTurnAmount)[4]} minusOneResource={this.props.minusOneResource} addOneResource={this.props.addOneResource} arrPosition={this.props.arrPosition} storeType="perTurnAmount"/>
                         </section> 
-                        {/*<section className="store">
-                            <h3>Resources available</h3>
-                            <ResourceStore image={woodImage} dataType={Object.keys(this.state.storedAmount)[0]} dataValue={Object.values(this.state.storedAmount)[0]} minusOneResource={this.minusOneResource} addOneResource={this.addOneResource} />
-                            <ResourceStore image={stoneImage} dataType={Object.keys(this.state.storedAmount)[1]} dataValue={Object.values(this.state.storedAmount)[1]} minusOneResource={this.minusOneResource} addOneResource={this.addOneResource} />
-                            <ResourceStore image={livestockImage} dataType={Object.keys(this.state.storedAmount)[2]} dataValue={Object.values(this.state.storedAmount)[2]} minusOneResource={this.minusOneResource} addOneResource={this.addOneResource} />
-                            <ResourceStore image={wheatImage} dataType={Object.keys(this.state.storedAmount)[3]} dataValue={Object.values(this.state.storedAmount)[3]} minusOneResource={this.minusOneResource} addOneResource={this.addOneResource} />
-                            <ResourceStore image={ironImage} dataType={Object.keys(this.state.storedAmount)[4]} dataValue={Object.values(this.state.storedAmount)[4]} minusOneResource={this.minusOneResource} addOneResource={this.addOneResource} />
-                        </section>
-                        <section className="shoppingCart">
-                            <h3>Shopping cart</h3>
-                            
-                            <ShoppingCart image={soldierImage} dataType={Object.keys(this.state.shoppingCart)[0]} dataValue={Object.values(this.state.shoppingCart)[0]} minusOneUnit={this.minusOneUnit} addOneUnit={this.addOneUnit} />
-                            <ShoppingCart image={horsemanImage} dataType={Object.keys(this.state.shoppingCart)[1]} dataValue={Object.values(this.state.shoppingCart)[1]} minusOneUnit={this.minusOneUnit} addOneUnit={this.addOneUnit} />
-                            <ShoppingCart image={cannonImage} dataType={Object.keys(this.state.shoppingCart)[2]} dataValue={Object.values(this.state.shoppingCart)[2]} minusOneUnit={this.minusOneUnit} addOneUnit={this.addOneUnit} />
-                            <ShoppingCart image={shipImage} dataType={Object.keys(this.state.shoppingCart)[3]} dataValue={Object.values(this.state.shoppingCart)[3]} minusOneUnit={this.minusOneUnit} addOneUnit={this.addOneUnit} />
-                            <ShoppingCart image={settlerImage} dataType={Object.keys(this.state.shoppingCart)[4]} dataValue={Object.values(this.state.shoppingCart)[4]} minusOneUnit={this.minusOneUnit} addOneUnit={this.addOneUnit} />
-                            <ShoppingCart image={cityImage} dataType={Object.keys(this.state.shoppingCart)[5]} dataValue={Object.values(this.state.shoppingCart)[5]} minusOneUnit={this.minusOneUnit} addOneUnit={this.addOneUnit} />
-                            <ShoppingCart image={roadImage} dataType={Object.keys(this.state.shoppingCart)[6]} dataValue={Object.values(this.state.shoppingCart)[6]} minusOneUnit={this.minusOneUnit} addOneUnit={this.addOneUnit} />
-                            <ShoppingCart image={wallImage} dataType={Object.keys(this.state.shoppingCart)[7]} dataValue={Object.values(this.state.shoppingCart)[7]} minusOneUnit={this.minusOneUnit} addOneUnit={this.addOneUnit} />
-                        </section>*/}
+                        
                 </div>
                 : 
                 <div>
