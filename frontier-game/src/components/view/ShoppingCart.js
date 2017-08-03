@@ -12,23 +12,21 @@ class ShoppingCart extends Component {
     };
 
     _minusOneUnit = () => {
-        // if(this.state.perTurnAmount[objKey] === 0) return;
-         this.props.minusOneUnit(this.props.arrPosition, this.props.dataType);
+        this.props.minusOneUnit(this.props.arrPosition, this.props.dataType);
         
     };
         
     render() {
-        //console.log(this.props.stateToIncrement)
         let dataType = this.props.dataType;
         let dataValue = this.props.dataValue;
         
         return (
-            <div className="counter">
-                <div className="store-item">
+            <div className="counter shop">
+                
                     <img src={this.props.image} alt={dataType} label={dataType} />
-                    
+                <div className="store-item">
                     <button onClick={this._minusOneUnit}><i className="material-icons">remove</i></button>
-                    <span>{dataValue}</span>
+                    <input className="small-box" type="number" value={dataValue} readOnly/>
                     <button onClick={this._addOneUnit}><i className="material-icons">add</i></button>
                 </div>
             </div>

@@ -25,9 +25,8 @@ class Shop extends Component {
     }
 
 	render() {
-		console.log(this.props.playerInfo)
 		return(
-			<div>
+			<div className="group">
 				<section className="store">
 					<h3>Resources available</h3> 
 					<ResourceStore image={woodImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[0]} dataValue={Object.values(this.props.playerInfo.storedAmount)[0]} />
@@ -35,9 +34,8 @@ class Shop extends Component {
 					<ResourceStore image={livestockImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[2]} dataValue={Object.values(this.props.playerInfo.storedAmount)[2]} />
 					<ResourceStore image={wheatImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[3]} dataValue={Object.values(this.props.playerInfo.storedAmount)[3]} />
 					<ResourceStore image={ironImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[4]} dataValue={Object.values(this.props.playerInfo.storedAmount)[4]} />
-					{/*<ResourceStore image={ironImage} dataType={Object.keys(this.state.storedAmount)[4]} dataValue={Object.values(this.state.storedAmount)[4]} minusOneResource={this.minusOneResource} addOneResource={this.addOneResource} />*/}
 				</section>
-				<section className="shoppingCart">
+				<section className="shopping-cart">
 					<h3>Shopping cart</h3>
 					
 					<ShoppingCart image={soldierImage} arrPosition={this.props.arrPosition} dataType={Object.keys(this.props.playerInfo.shoppingCart)[0]} dataValue={Object.values(this.props.playerInfo.shoppingCart)[0]} minusOneUnit={this.props.minusOneUnit} addOneUnit={this.props.addOneUnit} />

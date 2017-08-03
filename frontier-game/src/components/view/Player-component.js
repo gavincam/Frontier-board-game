@@ -8,25 +8,13 @@ import livestockImage from '../../images/livestock.png';
 import wheatImage from '../../images/wheat.png';
 import ironImage from '../../images/iron.png';
 
-// import ResourceStore from './ResourceStore';
-// import ShoppingCart from './ShoppingCart';
 
-// import soldierImage from '../../images/soldier.png';
-// import horsemanImage from '../../images/horseman.png';
-// import cannonImage from '../../images/cannon.png';
-// import shipImage from '../../images/ship.png';
-// import settlerImage from '../../images/settler.png';
-// import cityImage from '../../images/city.png';
-// import roadImage from '../../images/road.png';
-// import wallImage from '../../images/wall.png';
 
 class PlayerComponent extends Component {
     constructor(props) {
         super(props);
         
         this._removePlayer = this._removePlayer.bind(this);
-        //this.addOneResource = this.addOneResource.bind(this);
-        //this.minusOneResource = this.minusOneResource.bind(this)
     }
 
     _removePlayer = () => {
@@ -35,20 +23,6 @@ class PlayerComponent extends Component {
     };
 
 
-////////ADDING RESOURCES PER TURN
-    // addOneResource = (objKey) => {
-    //     this.setState({
-    //         perTurnAmount: Object.assign({},this.state.perTurnAmount,{[objKey]: this.state.perTurnAmount[objKey] + 1})
-    //     })
-    // };
-
-    // minusOneResource = (objKey) => {
-    //     if(this.state.perTurnAmount[objKey] === 0) return;
-
-    //     this.setState({
-    //         perTurnAmount: Object.assign({},this.state.perTurnAmount,{[objKey]: this.state.perTurnAmount[objKey] - 1})
-    //     })
-    // };
 
 
 
@@ -74,21 +48,6 @@ class PlayerComponent extends Component {
             notEmptyName ="player"
         } 
 
-        //CHECK ENOUGH RESOURCES TO PURCHASE
-        // let storedWood = Object.values(this.state.storedAmount)[0];
-        // let storedStone = Object.values(this.state.storedAmount)[1];
-        // let storedWheat = Object.values(this.state.storedAmount)[2];
-        // let storedLivestock = Object.values(this.state.storedAmount)[3];
-        // let storedIron = Object.values(this.state.storedAmount)[4];
-
-        // if (storedWood >= 5 && storedStone >= 0 && storedWheat >= 5 && storedLivestock >= 0 && storedIron >= 0) {
-        //     //this.isAvailabletoBuy();
-        // }
-        //console.log(this.state.unitsAvailableToBuy["soldier"]);
-        
-        //console.log(this.props.playerInfo)
-        //console.log(this.props.uniqueId);
-        
         return (
             
             <div className={classAdded}>
@@ -118,13 +77,6 @@ class PlayerComponent extends Component {
                 }
             </div>
 
-
-
-
-
-
-
-            
             
         );
     }

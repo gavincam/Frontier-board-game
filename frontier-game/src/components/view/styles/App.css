@@ -140,3 +140,59 @@ label {
     display: inline-block;
     vertical-align: 100%;
 } 
+
+.shop {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.shop .store-item {
+    margin: 0
+}
+
+.store {
+    margin-top: 30px;
+}
+
+.shopping-cart {
+    max-width: 760px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top:20px; 
+}
+
+.fade-in {
+    opacity: 1;
+    margin-right:0;
+    -webkit-transition: all 0.4s ease-out;
+    -moz-transition: all 0.4s ease-out;
+    -o-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
+}
+
+.fade-in .btn-next{
+    opacity: 1;
+    -webkit-transition: all 2s ease-in;
+    -moz-transition: all 2s ease-in;
+    -o-transition: all 2s ease-in;
+    transition: all 2s ease-in;
+}
+
+.fade-out {
+    opacity: 0;
+    margin-right:50px;
+    -webkit-transition: all 0.4s ease-out;
+    -moz-transition: all 0.4s ease-out;
+    -o-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
+}
+
+.fade-out .btn-next{
+    opacity: 0;
+    transform: translateX(-20px);
+    -webkit-transition: all 0.4s ease-out;
+    -moz-transition: all 0.4s ease-out;
+    -o-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
+}

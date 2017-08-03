@@ -16,6 +16,7 @@ class App extends Component {
             titleMessageSubhead: "Who's playing this game?",
             IdNumber: 2,
             turn: -1,
+            transitionClass:"fade-in",
             players:       [{   UId:0,
                                 perTurnAmount: {Wood: 0, Stone: 0, Livestock: 0, Wheat:0, Iron: 0},
                                 playerName:'',
@@ -36,8 +37,8 @@ class App extends Component {
             City: {Wood: 4, Stone: 4, Livestock: 3, Wheat:4, Iron: 2},
             Road: {Wood: 0, Stone: 3, Livestock: 0, Wheat:0, Iron: 0},
             Wall: {Wood: 0, Stone: 4, Livestock: 0, Wheat:0, Iron: 0},
-            nextButton: <button className="btn-next" onClick={this.showDetail}>Let's begin</button>
-            
+            nextButton: <button className="btn-next" onClick={this.handleClick}>Let's begin</button>,
+            nextAction: this.showDetail
         };
         
         this.addPlayer = this.addPlayer.bind(this)
@@ -46,6 +47,14 @@ class App extends Component {
         this.minusOneResource = this.minusOneResource.bind(this)
         this.addOneUnit = this.addOneUnit.bind(this)
         this.minusOneUnit = this.minusOneUnit.bind(this)
+    }
+
+    handleClick = ()=> {
+        this.setState({transitionClass: "fade-out"});
+        if(!this.timeout)
+            clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => this.setState( {transitionClass:"fade-in"},
+                                                        this.state.nextAction),400);
     }
 
     addPlayer = () => {
@@ -95,7 +104,8 @@ class App extends Component {
         this.setState({ showAllPlayersResources: true,
                         titleMessageHead: "Resources per turn",
                         titleMessageSubhead: "",
-                        nextButton:<button className="btn-next" onClick={this.addShop}>{this.state.players[this.state.turn +1].playerName}'s turn</button>
+                        nextButton:<button className="btn-next" onClick={this.handleClick}>{this.state.players[this.state.turn +1].playerName}'s turn</button>,
+                        nextAction: this.addShop
                         })
     }
 
@@ -159,29 +169,34 @@ class App extends Component {
 
         this.setState({
             playerPurchasePhase:true,
-            turn:this.state.turn+1
+            turn:this.state.turn+1,
+            titleMessageHead: this.state.players[this.state.turn+1].playerName
         },() => {this.setState({
-                    nextButton:<button className="btn-next" onClick={this.incrementPlayerNumber}>{this.state.players[this.state.turn +1].playerName}'s turn</button>
+                    nextButton:<button className="btn-next" onClick={this.handleClick}>{this.state.players[this.state.turn +1].playerName}'s turn</button>,
+                    nextAction: this.incrementPlayerNumber
                 })
         })
     }
 
     
     incrementPlayerNumber = () => {
-        console.log(this.state.turn + " turn")
-        console.log(this.state.players.length-2 + " players length")
+        
         if(this.state.turn < this.state.players.length-2) {
             this.setState({
                 turn:this.state.turn+1,
+                titleMessageHead: this.state.players[this.state.turn+1].playerName
+                
                 
             },() => {this.setState({
-                    nextButton:<button className="btn-next" onClick={this.incrementPlayerNumber}>{this.state.players[this.state.turn +1].playerName}'s turn</button>
+                    nextButton:<button className="btn-next" onClick={this.handleClick}>{this.state.players[this.state.turn +1].playerName}'s turn</button>
                 })
             })
         } else {
             this.setState({
-                //turn:0,
-                nextButton:<button className="btn-next" onClick={this.endRound}>End round</button>
+                turn:this.state.turn+1,
+                nextButton:<button className="btn-next" onClick={this.handleClick}>End round</button>,
+                nextAction: this.endRound,
+                titleMessageHead: this.state.players[this.state.turn+1].playerName
             })
         }
     }
@@ -189,15 +204,33 @@ class App extends Component {
     endRound = () => {
 
         // let arr = this.state.players
-        // console.log(Object.keys(arr).map((x) => Object.keys(arr[x].storedAmount).map((i) => arr[x].storedAmount[i] += arr[x].perTurnAmount[i])))
+        // console.log(this.state.players)
+        // console.log(Object.keys(arr).map((x) => Object.keys(arr[x].shoppingCart).map((i) => arr[x].shoppingCart[i] += arr[x].perTurnAmount[i])))
         
+
+        let playerValues = this.state.players;
+
+        for (var index = 0; index < playerValues.length; index++) {
+            playerValues[index].shoppingCart.Soldier = 0;
+            playerValues[index].shoppingCart.Horseman = 0;
+            playerValues[index].shoppingCart.Cannon = 0;
+            playerValues[index].shoppingCart.Ship = 0;
+            playerValues[index].shoppingCart.Settler = 0;
+            playerValues[index].shoppingCart.City = 0;
+            playerValues[index].shoppingCart.Road = 0;
+            playerValues[index].shoppingCart.Wall = 0;
+        }
+        console.log(playerValues)
         
 
         this.setState({
             turn:-1,
-            playerPurchasePhase:false
+            playerPurchasePhase:false,
+            titleMessageHead: "Resources per turn",
+            players:playerValues
         },() => {this.setState({
-                    nextButton:<button className="btn-next" onClick={this.resetRound}>{this.state.players[this.state.turn +1].playerName}'s turn</button>
+                    nextButton:<button className="btn-next" onClick={this.handleClick}>{this.state.players[this.state.turn +1].playerName}'s turn</button>,
+                    nextAction: this.resetRound
                 })
         })
     }
@@ -230,7 +263,7 @@ class App extends Component {
                 </div>
                 <Title titleMessageHead={this.state.titleMessageHead} titleMessageSubhead={this.state.titleMessageSubhead}/>
                 {this.state.playerPurchasePhase === false ?
-                    <div>
+                    <div className={this.state.transitionClass}>
                         <div className="group">
                             {playersList}
                             {this.state.maxPlayersReached  || this.state.showAllPlayersResources ? null : <button className="btn btn-secondary" onClick={this.addPlayer}><i className="material-icons">add</i> Player</button> }
@@ -238,7 +271,7 @@ class App extends Component {
                         {this.state.nextButton}
                     </div>
                 : 
-                    <div>
+                    <div className={this.state.transitionClass}>
                         <Shop   arrPosition={this.state.turn}
                                 playerInfo={this.state.players[this.state.turn]}
                                 addOneResource={this.addOneResource} 
