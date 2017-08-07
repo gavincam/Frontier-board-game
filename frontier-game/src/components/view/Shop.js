@@ -21,13 +21,34 @@ class Shop extends Component {
 	constructor(props) {
         super(props);
         this.state = {
+			tradeStation : <div>
+								<button onClick={this.showTrading}>Trade resources</button>
+							</div>,
+			tradingClass : "store"
         }
     }
 
+	
+
+	showTrading = () => {
+		this.setState(
+			{tradeStation: <div>
+								<button onClick={this.showTrading}>Hide trading</button>
+								<h2>Choose a resource to trade away</h2>
+								<span>You can trade 4 of any single resource for 1 of another.</span>
+							</div>,
+			 tradingClass:"store interactable"
+			}
+		)
+	}
+
 	render() {
+
+		
+
 		return(
 			<div className="group">
-				<section className="store">
+				<section className={this.state.tradingClass}>
 					<h3>Resources available</h3> 
 					<ResourceStore image={woodImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[0]} dataValue={Object.values(this.props.playerInfo.storedAmount)[0]} />
 					<ResourceStore image={stoneImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[1]} dataValue={Object.values(this.props.playerInfo.storedAmount)[1]} />
@@ -35,6 +56,7 @@ class Shop extends Component {
 					<ResourceStore image={wheatImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[3]} dataValue={Object.values(this.props.playerInfo.storedAmount)[3]} />
 					<ResourceStore image={ironImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[4]} dataValue={Object.values(this.props.playerInfo.storedAmount)[4]} />
 				</section>
+				{this.state.tradeStation}
 				<section className="shopping-cart">
 					<h3>Shopping cart</h3>
 					
