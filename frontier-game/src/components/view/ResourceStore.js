@@ -7,18 +7,44 @@ class ResourceStore extends Component {
         
     // }
 
-    
+    resourceSelected = () => {
+        console.log("hollah")
+    }
         
     render() {
         let dataType = this.props.dataType;
         let dataValue = this.props.dataValue;
+        let tradingThisResource = this.props.trading;
+        let resource;
+
+        switch(tradingThisResource) { 
+			case true: { 
+				resource = <div onClick={this.resourceSelected}>
+                    <img src={this.props.image} alt={dataType} label={dataType} />
+                    <span>{dataValue}</span>
+                </div>
+				break; 
+			} 
+			case false: { 
+				resource = <div>
+                    <img src={this.props.image} alt={dataType} label={dataType} />
+                    <span>{dataValue}</span>
+                </div>
+                break; 
+			}
+			default:
+            resource = <div>
+                    <img src={this.props.image} alt={dataType} label={dataType} />
+                    <span>{dataValue}</span>
+                </div>
+			
+		}
 
         
         return (
             
             <div className="store-item">
-                <img src={this.props.image} alt={dataType} label={dataType} />
-                <span>{dataValue}</span>
+                {resource}
                     
                 
             </div>

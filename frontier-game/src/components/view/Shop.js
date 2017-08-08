@@ -24,7 +24,9 @@ class Shop extends Component {
 			tradeStation : <div>
 								<button onClick={this.showTrading}>Trade resources</button>
 							</div>,
-			tradingClass : "store"
+			tradingClass : "store",
+			trading: false,
+			resourceImages: [woodImage,stoneImage,livestockImage,wheatImage,ironImage]
         }
     }
 
@@ -37,24 +39,25 @@ class Shop extends Component {
 								<h2>Choose a resource to trade away</h2>
 								<span>You can trade 4 of any single resource for 1 of another.</span>
 							</div>,
-			 tradingClass:"store interactable"
+			 tradingClass:"store interactable",
+			 trading: true
 			}
 		)
 	}
 
-	render() {
+	tradeAwaySelected = () => {
+		console.log(`hollah`)
+	}
 
-		
+	render() {
+		let arrayOfResources = Array.from({length: Object.keys(this.props.playerInfo.storedAmount).length}, (v,i) => i);
+		let listOfResources = arrayOfResources.map(x => <ResourceStore image={this.state.resourceImages[x]} trading={this.state.trading} dataType={Object.keys(this.props.playerInfo.storedAmount)[x]} dataValue={Object.values(this.props.playerInfo.storedAmount)[x]} key={x}/>)
 
 		return(
 			<div className="group">
 				<section className={this.state.tradingClass}>
 					<h3>Resources available</h3> 
-					<ResourceStore image={woodImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[0]} dataValue={Object.values(this.props.playerInfo.storedAmount)[0]} />
-					<ResourceStore image={stoneImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[1]} dataValue={Object.values(this.props.playerInfo.storedAmount)[1]} />
-					<ResourceStore image={livestockImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[2]} dataValue={Object.values(this.props.playerInfo.storedAmount)[2]} />
-					<ResourceStore image={wheatImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[3]} dataValue={Object.values(this.props.playerInfo.storedAmount)[3]} />
-					<ResourceStore image={ironImage} dataType={Object.keys(this.props.playerInfo.storedAmount)[4]} dataValue={Object.values(this.props.playerInfo.storedAmount)[4]} />
+					{listOfResources}
 				</section>
 				{this.state.tradeStation}
 				<section className="shopping-cart">
