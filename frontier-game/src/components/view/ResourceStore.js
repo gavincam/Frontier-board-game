@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import './styles/StoreItems.css';
 
 class ResourceStore extends Component {
-    // constructor(props) {
-    //     super(props); 
-        
-    // }
+    constructor(props) {
+        super(props); 
+        this.state = {
+            isClicked:false
+        }
+    }
 
-    resourceSelected = () => {
-        console.log("hollah")
+    resourceSelected = (e) => {
+        this.setState(prevState => ({
+            isClicked: !prevState.isClicked
+        }));
     }
         
     render() {
@@ -16,7 +20,8 @@ class ResourceStore extends Component {
         let dataValue = this.props.dataValue;
         let tradingThisResource = this.props.trading;
         let resource;
-
+        const clickedClass = this.state.isClicked === true ? "store-item selected" : "store-item";
+       // console.log()
         switch(tradingThisResource) { 
 			case true: { 
 				resource = <div onClick={this.resourceSelected}>
@@ -43,7 +48,7 @@ class ResourceStore extends Component {
         
         return (
             
-            <div className="store-item">
+            <div className={clickedClass}>
                 {resource}
                     
                 
