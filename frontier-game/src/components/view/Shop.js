@@ -28,6 +28,7 @@ class Shop extends Component {
 			trading: false,
 			resourceImages: [woodImage,stoneImage,livestockImage,wheatImage,ironImage]
         }
+		this.tradeAwaySelected = this.tradeAwaySelected.bind(this)
     }
 
 	
@@ -51,7 +52,7 @@ class Shop extends Component {
 
 	render() {
 		let arrayOfResources = Array.from({length: Object.keys(this.props.playerInfo.storedAmount).length}, (v,i) => i);
-		let listOfResources = arrayOfResources.map(x => <ResourceStore image={this.state.resourceImages[x]} trading={this.state.trading} dataType={Object.keys(this.props.playerInfo.storedAmount)[x]} dataValue={Object.values(this.props.playerInfo.storedAmount)[x]} key={x}/>)
+		let listOfResources = arrayOfResources.map(x => <ResourceStore selectResourceToTrade={this.tradeAwaySelected} image={this.state.resourceImages[x]} trading={this.state.trading} dataType={Object.keys(this.props.playerInfo.storedAmount)[x]} dataValue={Object.values(this.props.playerInfo.storedAmount)[x]} key={x}/>)
 
 		return(
 			<div className="group">

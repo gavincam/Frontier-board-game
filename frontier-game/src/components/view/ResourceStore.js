@@ -9,7 +9,12 @@ class ResourceStore extends Component {
         }
     }
 
+    _resoureceSelected = () => {
+        this.props.selectResourceToTrade()
+    }
+
     resourceSelected = (e) => {
+        this._resoureceSelected();
         this.setState(prevState => ({
             isClicked: !prevState.isClicked
         }));
