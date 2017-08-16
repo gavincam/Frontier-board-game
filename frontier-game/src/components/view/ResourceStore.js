@@ -9,15 +9,10 @@ class ResourceStore extends Component {
         }
     }
 
-    _resoureceSelected = () => {
-        this.props.selectResourceToTrade()
-    }
+    
 
-    resourceSelected = (e) => {
-        this._resoureceSelected();
-        this.setState(prevState => ({
-            isClicked: !prevState.isClicked
-        }));
+    _resourceSelected = (e) => {
+        this.props.selectResourceToTrade(this.props.dataType)
     }
         
     render() {
@@ -25,11 +20,10 @@ class ResourceStore extends Component {
         let dataValue = this.props.dataValue;
         let tradingThisResource = this.props.trading;
         let resource;
-        const clickedClass = this.state.isClicked === true ? "store-item selected" : "store-item";
-       // console.log()
+        const clickedClass = this.props.resourceSelected === true ? "store-item selected" : "store-item";
         switch(tradingThisResource) { 
 			case true: { 
-				resource = <div onClick={this.resourceSelected}>
+				resource = <div onClick={this._resourceSelected}>
                     <img src={this.props.image} alt={dataType} label={dataType} />
                     <span>{dataValue}</span>
                 </div>

@@ -89,8 +89,7 @@ class App extends Component {
     updatePlayerName = (value, arrPosition) => {
         let arr = this.state.players
         arr[arrPosition].playerName = value;
-        this.setState({ 
-
+        this.setState({
         })
     }
 
