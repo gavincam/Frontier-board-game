@@ -27,8 +27,9 @@ class Shop extends Component {
 			tradingClass : "store",
 			trading: false,
 			resourcesToBeTraded: [],
-			resources:{Wood:false, Stone:false, Livestock: false, Wheat:false, Iron:false},
-			resourceImages: [woodImage,stoneImage,livestockImage,wheatImage,ironImage]
+			isResourceSelected:{Wood:false, Stone:false, Livestock: false, Wheat:false, Iron:false},
+			resourceImages: [woodImage,stoneImage,livestockImage,wheatImage,ironImage],
+			cancelThisTrade:''
         }
 		this.handleTrade = this.handleTrade.bind(this)
     }
@@ -56,46 +57,79 @@ class Shop extends Component {
 			 resourcesToBeTraded: [],
 			 tradingClass:"store",
 			 trading: false,
-			 resources:{Wood:false, Stone:false, Livestock: false, Wheat:false, Iron:false}
+			 isResourceSelected:{Wood:false, Stone:false, Livestock: false, Wheat:false, Iron:false}
 			}
 		)
 	}
 
 	handleTrade = (selectedResource) => {
 
-		const resourceArr = this.state.resources
+		const resourceArr = this.state.isResourceSelected
 		
-		function makeResourceSelected () {
+		//DEAL WITH WHICH RESOURCES HAVE SELECTION SET TO TRUE OR FALSE
+		function changeSelectedState () {
 			Object.keys(resourceArr).map((x) =>{
 				if(x === selectedResource){
 					resourceArr[selectedResource] = !resourceArr[selectedResource]
 				} return x
 			})
 			console.log(resourceArr)
+			
+		}
+		//console.log(this.state.resourcesToBeTraded)
+
+		//DEAL WITH RESOURCES IN THE RESOURCES TO TRADE ARRAY
+		if(this.state.resourcesToBeTraded.length <2 && selectedResource !== this.state.resourcesToBeTraded[0]){
+			changeSelectedState()
+			this.setState({
+				resourcesToBeTraded:this.state.resourcesToBeTraded.concat([selectedResource]),
+				cancelThisTrade: <button onClick={this.cancelThisTrade}>X</button>
+			})
+		} else if(this.state.resourcesToBeTraded.length === 2 && selectedResource !== this.state.resourcesToBeTraded[0]){
+			//REMOVE SECOND RESOURCE FROM SELECTED RESOURCE ARRAY OR REPLACE WITH NEW ONE
+			if(selectedResource === this.state.resourcesToBeTraded[1]){
+				const arr = this.state.resourcesToBeTraded;
+				arr.splice(1,1)
+				this.setState({
+					resourcesToBeTraded:arr
+				})
+				changeSelectedState()
+			} else {
+				
+				const arr = this.state.resourcesToBeTraded;
+				
+				//DESELCTING THE PREVIOUS 2ND ITEM IN THE ARRAY
+				const turnOff = arr[1]
+				Object.keys(resourceArr).map((x) =>{
+					if(x === turnOff){
+						resourceArr[turnOff] = !resourceArr[turnOff]
+					} return x
+				})
+				//ADDING THE NEWLY SELECTED ITEM TO 2ND IN THE ARRAY
+				arr.splice(1,1,selectedResource)
+				this.setState({
+					resourcesToBeTraded:arr
+				})
+				changeSelectedState()
+			}
+			
+			
+			
+			
 		}
 
-		if(this.state.resourcesToBeTraded.length <2){
-			makeResourceSelected()
-			this.setState({
-				resourcesToBeTraded:this.state.resourcesToBeTraded.concat([selectedResource])
-			})
-		}
-		if(selectedResource === this.state.resourcesToBeTraded[0]){
-			this.setState({
-				resourcesToBeTraded:[]
-			})
-		} else if(selectedResource === this.state.resourcesToBeTraded[1]){
-			const arr = this.state.resourcesToBeTraded;
-			arr.splice(1,1)
-			this.setState({
-				resourcesToBeTraded:arr
-			})
-		}
+	}
+
+	cancelThisTrade = () => {
+		this.setState ({
+			resourcesToBeTraded: [],
+			isResourceSelected:{Wood:false, Stone:false, Livestock: false, Wheat:false, Iron:false},
+		})
 	}
 
 	render() {
 		let arrayOfResources = Array.from({length: Object.keys(this.props.playerInfo.storedAmount).length}, (v,i) => i);
-		let listOfResources = arrayOfResources.map(x => <ResourceStore selectResourceToTrade={this.handleTrade} resourceSelected={this.state.resources[Object.keys(this.state.resources)[x]]} image={this.state.resourceImages[x]} trading={this.state.trading} dataType={Object.keys(this.props.playerInfo.storedAmount)[x]} dataValue={Object.values(this.props.playerInfo.storedAmount)[x]} key={x}/>)
+		let listOfResources = arrayOfResources.map(x => <ResourceStore selectResourceToTrade={this.handleTrade} resourceSelected={this.state.isResourceSelected[Object.keys(this.state.isResourceSelected)[x]]} image={this.state.resourceImages[x]} trading={this.state.trading} dataType={Object.keys(this.props.playerInfo.storedAmount)[x]} dataValue={Object.values(this.props.playerInfo.storedAmount)[x]} key={x}/>)
 		
 		return(
 			<div className="group">
@@ -104,6 +138,7 @@ class Shop extends Component {
 					{listOfResources}
 				</section>
 				{this.state.tradeStation}
+				{this.state.cancelThisTrade}
 				<section className="shopping-cart">
 					<h3>Shopping cart</h3>
 					

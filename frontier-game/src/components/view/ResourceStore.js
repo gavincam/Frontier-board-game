@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import './styles/StoreItems.css';
 
 class ResourceStore extends Component {
-    constructor(props) {
-        super(props); 
-        this.state = {
-            isClicked:false
-        }
-    }
+    
 
     
 
