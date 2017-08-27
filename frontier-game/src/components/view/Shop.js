@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ResourceStore from './ResourceStore';
 import ShoppingCart from './ShoppingCart';
+import Arrow from './Arrow';
 
 import woodImage from '../../images/wood.png';
 import stoneImage from '../../images/stone.png';
@@ -16,6 +17,7 @@ import settlerImage from '../../images/settler.png';
 import cityImage from '../../images/city.png';
 import roadImage from '../../images/road.png';
 import wallImage from '../../images/wall.png';
+
 
 class Shop extends Component {
 	constructor(props) {
@@ -42,6 +44,7 @@ class Shop extends Component {
 								<button onClick={this.hideTrading}>Hide trading</button>
 								<h2>Choose a resource to trade away</h2>
 								<span>You can trade 4 of any single resource for 1 of another.</span>
+								<Arrow/>
 							</div>,
 			 tradingClass:"store interactable",
 			 trading: true
@@ -72,11 +75,8 @@ class Shop extends Component {
 				if(x === selectedResource){
 					resourceArr[selectedResource] = !resourceArr[selectedResource]
 				} return x
-			})
-			console.log(resourceArr)
-			
+			})	
 		}
-		//console.log(this.state.resourcesToBeTraded)
 
 		//DEAL WITH RESOURCES IN THE RESOURCES TO TRADE ARRAY
 		if(this.state.resourcesToBeTraded.length <2 && selectedResource !== this.state.resourcesToBeTraded[0]){
