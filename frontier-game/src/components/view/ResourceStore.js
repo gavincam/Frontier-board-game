@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Arrow from './Arrow';
 import './styles/StoreItems.css';
 
 class ResourceStore extends Component {
@@ -21,6 +22,7 @@ class ResourceStore extends Component {
 				resource = <div onClick={this._resourceSelected}>
                     <img src={this.props.image} alt={dataType} label={dataType} />
                     <span>{dataValue}</span>
+                    
                 </div>
 				break; 
 			} 
@@ -44,7 +46,7 @@ class ResourceStore extends Component {
             
             <div className={clickedClass}>
                 {resource}
-                    
+                <Arrow id={this.props.id}/>
                 
             </div>
         )

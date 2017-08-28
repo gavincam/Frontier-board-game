@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ResourceStore from './ResourceStore';
 import ShoppingCart from './ShoppingCart';
-import Arrow from './Arrow';
 
 import woodImage from '../../images/wood.png';
 import stoneImage from '../../images/stone.png';
@@ -43,8 +42,7 @@ class Shop extends Component {
 			{tradeStation: <div>
 								<button onClick={this.hideTrading}>Hide trading</button>
 								<h2>Choose a resource to trade away</h2>
-								<span>You can trade 4 of any single resource for 1 of another.</span>
-								<Arrow/>
+								<span>You can trade 4 of any single resource for 1 of another.</span>								
 							</div>,
 			 tradingClass:"store interactable",
 			 trading: true
@@ -129,7 +127,7 @@ class Shop extends Component {
 
 	render() {
 		let arrayOfResources = Array.from({length: Object.keys(this.props.playerInfo.storedAmount).length}, (v,i) => i);
-		let listOfResources = arrayOfResources.map(x => <ResourceStore selectResourceToTrade={this.handleTrade} resourceSelected={this.state.isResourceSelected[Object.keys(this.state.isResourceSelected)[x]]} image={this.state.resourceImages[x]} trading={this.state.trading} dataType={Object.keys(this.props.playerInfo.storedAmount)[x]} dataValue={Object.values(this.props.playerInfo.storedAmount)[x]} key={x}/>)
+		let listOfResources = arrayOfResources.map(x => <ResourceStore id={x} selectResourceToTrade={this.handleTrade} resourceSelected={this.state.isResourceSelected[Object.keys(this.state.isResourceSelected)[x]]} image={this.state.resourceImages[x]} trading={this.state.trading} dataType={Object.keys(this.props.playerInfo.storedAmount)[x]} dataValue={Object.values(this.props.playerInfo.storedAmount)[x]} key={x}/>)
 		
 		return(
 			<div className="group">
