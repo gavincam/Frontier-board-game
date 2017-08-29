@@ -127,7 +127,15 @@ class Shop extends Component {
 
 	render() {
 		let arrayOfResources = Array.from({length: Object.keys(this.props.playerInfo.storedAmount).length}, (v,i) => i);
-		let listOfResources = arrayOfResources.map(x => <ResourceStore id={x} selectResourceToTrade={this.handleTrade} resourceSelected={this.state.isResourceSelected[Object.keys(this.state.isResourceSelected)[x]]} image={this.state.resourceImages[x]} trading={this.state.trading} dataType={Object.keys(this.props.playerInfo.storedAmount)[x]} dataValue={Object.values(this.props.playerInfo.storedAmount)[x]} key={x}/>)
+		let listOfResources = arrayOfResources.map(x => <ResourceStore 	id={x} 
+																		selectResourceToTrade={this.handleTrade} 
+																		resourceSelected={this.state.isResourceSelected[Object.keys(this.state.isResourceSelected)[x]]} 
+																		resourcesToBeTraded={this.state.resourcesToBeTraded}
+																		image={this.state.resourceImages[x]} trading={this.state.trading} 
+																		dataType={Object.keys(this.props.playerInfo.storedAmount)[x]} 
+																		dataValue={Object.values(this.props.playerInfo.storedAmount)[x]} 
+																		key={x}
+															/>)
 		
 		return(
 			<div className="group">

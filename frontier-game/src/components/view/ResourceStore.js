@@ -17,6 +17,10 @@ class ResourceStore extends Component {
         let tradingThisResource = this.props.trading;
         let resource;
         const clickedClass = this.props.resourceSelected === true ? "store-item selected" : "store-item";
+        let firstResourceSelected = this.props.resourcesToBeTraded
+
+        console.log(firstResourceSelected)
+        
         switch(tradingThisResource) { 
 			case true: { 
 				resource = <div onClick={this._resourceSelected}>
