@@ -39,18 +39,15 @@
     cursor: pointer;
     background-color: #E64F48;
     position: relative;
-    z-index: 50;
 }
 
 .arrow {
     position: absolute;
-    left: 0;
+    left: -600px;
     top: 0;
-    display: none;
+    pointer-events: none;
 }
 
-.selected .arrow {
-    display: block;
-    pointer-events: none;
-   
+.first {
+    z-index: 500
 }

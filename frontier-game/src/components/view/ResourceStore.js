@@ -16,10 +16,15 @@ class ResourceStore extends Component {
         let dataValue = this.props.dataValue;
         let tradingThisResource = this.props.trading;
         let resource;
-        const clickedClass = this.props.resourceSelected === true ? "store-item selected" : "store-item";
-        let firstResourceSelected = this.props.resourcesToBeTraded
+        let clickedClass = this.props.isResourceSelected === true ? "store-item selected" : "store-item";
+        let firstResourceSelected = this.props.resourcesToBeTraded[0]
+        let arrow = null
 
-        console.log(firstResourceSelected)
+        if(firstResourceSelected === dataType){
+            clickedClass += ' first'
+            arrow = <Arrow id={this.props.id} resourcesToBeTraded={this.props.resourcesToBeTraded} />;
+        }
+
         
         switch(tradingThisResource) { 
 			case true: { 
@@ -50,7 +55,7 @@ class ResourceStore extends Component {
             
             <div className={clickedClass}>
                 {resource}
-                <Arrow id={this.props.id}/>
+                {arrow}
                 
             </div>
         )
