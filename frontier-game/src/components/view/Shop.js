@@ -81,7 +81,7 @@ class Shop extends Component {
 			changeSelectedState()
 			this.setState({
 				resourcesToBeTraded:this.state.resourcesToBeTraded.concat([selectedResource]),
-				cancelThisTrade: <button onClick={this.cancelThisTrade}>X</button>
+				// cancelThisTrade: <button onClick={this.cancelThisTrade}>X</button>
 			})
 		} else if(this.state.resourcesToBeTraded.length === 2 && selectedResource !== this.state.resourcesToBeTraded[0]){
 			//REMOVE SECOND RESOURCE FROM SELECTED RESOURCE ARRAY OR REPLACE WITH NEW ONE
@@ -114,6 +114,8 @@ class Shop extends Component {
 			
 			
 			
+		} else if (selectedResource === this.state.resourcesToBeTraded[0]) {
+			this.cancelThisTrade()
 		}
 
 	}
@@ -127,14 +129,15 @@ class Shop extends Component {
 
 	render() {
 		let arrayOfResources = Array.from({length: Object.keys(this.props.playerInfo.storedAmount).length}, (v,i) => i);
-		let listOfResources = arrayOfResources.map(x => <ResourceStore 	id={x} 
-																		selectResourceToTrade={this.handleTrade} 
+		let listOfResources = arrayOfResources.map(x => <ResourceStore 	selectResourceToTrade={this.handleTrade} 
 																		isResourceSelected={this.state.isResourceSelected[Object.keys(this.state.isResourceSelected)[x]]} 
 																		resourcesToBeTraded={this.state.resourcesToBeTraded}
-																		image={this.state.resourceImages[x]} trading={this.state.trading} 
+																		image={this.state.resourceImages[x]} 
+																		trading={this.state.trading} 
 																		dataType={Object.keys(this.props.playerInfo.storedAmount)[x]} 
 																		dataValue={Object.values(this.props.playerInfo.storedAmount)[x]} 
 																		key={x}
+																		id={x}
 															/>)
 		
 		return(

@@ -19,9 +19,8 @@ class Arrow extends Component {
 			const positionOfFirstResource = this.state.positions[this.props.resourcesToBeTraded[0]]
 			const positionOfSecondResource = this.state.positions[this.props.resourcesToBeTraded[1]]
 			
-
-			x2position = 643 + (positionOfSecondResource - positionOfFirstResource) * 85 + ((positionOfSecondResource - positionOfFirstResource-1) *16)
-			console.log(x2position)
+			
+			x2position = 643 + (positionOfSecondResource - positionOfFirstResource) * 101
 		}
 
 		let arrow = <svg width="1100px" height="75px">
@@ -29,7 +28,7 @@ class Arrow extends Component {
 							<marker id={"spot-" + this.props.id} markerWidth="8" markerHeight="8" refX="2" refY="2">
 								<circle cx="2" cy="2" r="2" fill='#fff'/>
 							</marker>
-							<marker id={"arrow-" + this.props.id} markerWidth="5" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+							<marker id={"arrow-" + this.props.id} markerWidth="5" markerHeight="10" refX="4" refY="3" orient="auto" markerUnits="strokeWidth">
 								<path d="M0,0 L0,6 L5,3 z" fill="#fff" />
 							</marker>
 						</defs>

@@ -14,21 +14,37 @@ class ResourceStore extends Component {
     render() {
         let dataType = this.props.dataType;
         let dataValue = this.props.dataValue;
-        let tradingThisResource = this.props.trading;
+        let isTradingOpen = this.props.trading;
         let resource;
         let clickedClass = this.props.isResourceSelected === true ? "store-item selected" : "store-item";
         let firstResourceSelected = this.props.resourcesToBeTraded[0]
         let arrow = null
+        let enoughOfThisToTrade = false
 
+        if (this.props.dataValue >= 4){
+            enoughOfThisToTrade = true;
+        }
+
+        if (this.props.resourcesToBeTraded.length > 0){
+            enoughOfThisToTrade = true
+        }
+
+    
         if(firstResourceSelected === dataType){
             clickedClass += ' first'
             arrow = <Arrow id={this.props.id} resourcesToBeTraded={this.props.resourcesToBeTraded} />;
         }
 
         
-        switch(tradingThisResource) { 
+        switch(isTradingOpen) { 
 			case true: { 
+                enoughOfThisToTrade === true ?
 				resource = <div onClick={this._resourceSelected}>
+                    <img src={this.props.image} alt={dataType} label={dataType} />
+                    <span>{dataValue}</span>
+                    
+                </div> :
+                resource = <div className='faded'>
                     <img src={this.props.image} alt={dataType} label={dataType} />
                     <span>{dataValue}</span>
                     
