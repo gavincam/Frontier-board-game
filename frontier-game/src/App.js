@@ -47,6 +47,7 @@ class App extends Component {
         this.minusOneResource = this.minusOneResource.bind(this)
         this.addOneUnit = this.addOneUnit.bind(this)
         this.minusOneUnit = this.minusOneUnit.bind(this)
+        this.makeTrade = this.makeTrade.bind(this)
     }
 
     handleClick = ()=> {
@@ -177,6 +178,17 @@ class App extends Component {
         })
     }
 
+    makeTrade = (resourcesToTrade) => {
+        let arr = this.state.players;
+
+        arr[this.state.turn].storedAmount[resourcesToTrade[0]] -= 4
+        arr[this.state.turn].storedAmount[resourcesToTrade[1]] += 1
+
+        this.setState({
+            players: arr
+        })
+    }
+
     
     incrementPlayerNumber = () => {
         
@@ -219,7 +231,6 @@ class App extends Component {
             playerValues[index].shoppingCart.Road = 0;
             playerValues[index].shoppingCart.Wall = 0;
         }
-        console.log(playerValues)
         
 
         this.setState({
@@ -277,6 +288,7 @@ class App extends Component {
                                 minusOneResource={this.minusOneResource}
                                 addOneUnit={this.addOneUnit}
                                 minusOneUnit={this.minusOneUnit}
+                                makeTrade={this.makeTrade}
                         />
                         {this.state.nextButton}
                     </div>

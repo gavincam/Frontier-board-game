@@ -27,6 +27,7 @@ class Shop extends Component {
 							</div>,
 			tradingClass : "store",
 			trading: false,
+			confirmTrade: null,
 			resourcesToBeTraded: [],
 			isResourceSelected:{Wood:false, Stone:false, Livestock: false, Wheat:false, Iron:false},
 			resourceImages: [woodImage,stoneImage,livestockImage,wheatImage,ironImage],
@@ -58,9 +59,21 @@ class Shop extends Component {
 			 resourcesToBeTraded: [],
 			 tradingClass:"store",
 			 trading: false,
+			 confirmTrade: null,
 			 isResourceSelected:{Wood:false, Stone:false, Livestock: false, Wheat:false, Iron:false}
 			}
 		)
+	}
+
+	_makeTrade = () => {
+		
+		if(this.props.playerInfo.storedAmount[this.state.resourcesToBeTraded[0]]  >= 4){
+			this.props.makeTrade(this.state.resourcesToBeTraded);
+			if(this.props.playerInfo.storedAmount[this.state.resourcesToBeTraded[0]] < 4) {
+				console.log(`nope`)
+				this.handleTrade(this.state.resourcesToBeTraded[0])
+			}
+		} 
 	}
 
 	handleTrade = (selectedResource) => {
@@ -80,18 +93,25 @@ class Shop extends Component {
 		if(this.state.resourcesToBeTraded.length <2 && selectedResource !== this.state.resourcesToBeTraded[0]){
 			changeSelectedState()
 			this.setState({
-				resourcesToBeTraded:this.state.resourcesToBeTraded.concat([selectedResource]),
-				// cancelThisTrade: <button onClick={this.cancelThisTrade}>X</button>
+				resourcesToBeTraded:this.state.resourcesToBeTraded.concat([selectedResource])
 			})
+			if(this.state.resourcesToBeTraded.length === 1) {
+				this.setState({
+					confirmTrade: <button onClick={this._makeTrade}>Confirm trade</button>
+				})
+			}
 		} else if(this.state.resourcesToBeTraded.length === 2 && selectedResource !== this.state.resourcesToBeTraded[0]){
 			//REMOVE SECOND RESOURCE FROM SELECTED RESOURCE ARRAY OR REPLACE WITH NEW ONE
+			//REMOVING
 			if(selectedResource === this.state.resourcesToBeTraded[1]){
 				const arr = this.state.resourcesToBeTraded;
 				arr.splice(1,1)
 				this.setState({
-					resourcesToBeTraded:arr
+					resourcesToBeTraded:arr,
+					confirmTrade: null
 				})
 				changeSelectedState()
+			//REPLACING
 			} else {
 				
 				const arr = this.state.resourcesToBeTraded;
@@ -113,9 +133,12 @@ class Shop extends Component {
 			
 			
 			
-			
+		//CANCELING THE TRADE BY CLICKING ON THE INITIAL RESOURCE
 		} else if (selectedResource === this.state.resourcesToBeTraded[0]) {
 			this.cancelThisTrade()
+			this.setState({
+				confirmTrade: null
+			})
 		}
 
 	}
@@ -146,6 +169,7 @@ class Shop extends Component {
 					<h3>Resources available</h3> 
 					{listOfResources}
 				</section>
+				{this.state.confirmTrade}
 				{this.state.tradeStation}
 				{this.state.cancelThisTrade}
 				<section className="shopping-cart">
