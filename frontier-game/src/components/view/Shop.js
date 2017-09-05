@@ -23,7 +23,7 @@ class Shop extends Component {
         super(props);
         this.state = {
 			tradeStation : <div>
-								<button onClick={this.showTrading}>Trade resources</button>
+								<button className="btn btn-secondary" onClick={this.showTrading}>Trade resources</button>
 							</div>,
 			tradingClass : "store",
 			trading: false,
@@ -40,10 +40,10 @@ class Shop extends Component {
 
 	showTrading = () => {
 		this.setState(
-			{tradeStation: <div>
-								<button onClick={this.hideTrading}>Hide trading</button>
-								<h2>Choose a resource to trade away</h2>
-								<span>You can trade 4 of any single resource for 1 of another.</span>								
+			{tradeStation: <div className="message">
+								<h3>Pick a resource to trade away</h3>
+								<span>You can trade 4 of any single resource for 1 of another.</span>
+								<button className="btn btn-secondary" onClick={this.hideTrading}>Finished trading</button>
 							</div>,
 			 tradingClass:"store interactable",
 			 trading: true
@@ -54,7 +54,7 @@ class Shop extends Component {
 	hideTrading = () => {
 		this.setState(
 			{tradeStation: <div>
-								<button onClick={this.showTrading}>Trade resources</button>
+								<button className="btn btn-secondary" onClick={this.showTrading}>Trade resources</button>
 							</div>,
 			 resourcesToBeTraded: [],
 			 tradingClass:"store",
@@ -97,7 +97,7 @@ class Shop extends Component {
 			})
 			if(this.state.resourcesToBeTraded.length === 1) {
 				this.setState({
-					confirmTrade: <button onClick={this._makeTrade}>Confirm trade</button>
+					confirmTrade: <button className="btn btn-next" onClick={this._makeTrade}>Confirm trade</button>
 				})
 			}
 		} else if(this.state.resourcesToBeTraded.length === 2 && selectedResource !== this.state.resourcesToBeTraded[0]){

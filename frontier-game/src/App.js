@@ -12,7 +12,7 @@ class App extends Component {
             maxPlayersReached: false,
             showAllPlayersResources: false,
             playerPurchasePhase: false,
-            titleMessageHead: "Let's set a course",
+            titleMessageHead: "Let's set a course.",
             titleMessageSubhead: "Who's playing this game?",
             IdNumber: 2,
             turn: -1,

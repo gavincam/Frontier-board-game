@@ -25,6 +25,12 @@ h1,h2,h3,h4,h5,h6,p,span,button,input {
     font-family: 'Bitter', serif;
 }
 
+.message span {
+    color: #808080;
+    margin-bottom: 2rem;
+    display: block;
+}
+
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
