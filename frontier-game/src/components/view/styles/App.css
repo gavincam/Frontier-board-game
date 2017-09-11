@@ -202,3 +202,66 @@ label {
     -o-transition: all 0.4s ease-out;
     transition: all 0.4s ease-out;
 }
+
+@media only screen and (max-width: 500px) {
+    h1,h2,h3,h4,h5,h6,p,span,button,input {
+        font-size: 1rem
+    }
+
+    .group {
+        padding: 0 10px
+    }
+    
+    .resources {
+        margin: 0.5rem;
+    }
+    .App-header {
+        height: 60px
+    }
+    .App-logo {
+        height: 25px;
+        margin-top: 1rem;
+    }
+
+    .btn-secondary {
+        line-height: 24px;
+    }
+
+    .counter img, 
+    .store img {
+        height: 3rem;
+        
+    }
+    .counter img {
+        vertical-align: middle;
+    }
+
+    .counter > div {
+        vertical-align: middle;
+    }
+
+    .counter input {
+        font-size: 1.1rem;
+        width: 1.6rem;
+    }
+
+    .counter button {
+        padding: 0.5rem 0.5rem
+    }
+    
+    .counter i {
+        font-size: 1.25rem;
+    }
+
+    .store-item {
+        margin: 0 0.5rem 1rem 0;
+        padding: 0.5rem
+    }
+    .store span {
+        font-size: 1.1rem;
+    }
+
+    .fade-out {
+        margin-right: 20px;
+    }
+}
