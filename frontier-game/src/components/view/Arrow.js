@@ -4,14 +4,19 @@ class Arrow extends Component {
 	constructor(props) {
         super(props);
         this.state = {
-			positions:{Wood:1, Stone:2, Livestock: 3, Wheat:4, Iron:5}
+			positions:{Wood:1, Stone:2, Livestock: 3, Wheat:4, Iron:5},
+			screenWidth:window.innerWidth
         }
     }
 
 
 	render() {
-		let x2position='643';
+		
+		let linePositions = this.state.screenWidth >500 ? {x1position:'643', y1position:'47',tileDistance:'101'} : {x1position:'629', y1position:'34', tileDistance:'66'}
+		let x2position=linePositions['x1position']
+
 		let markerEnd = '';
+		//console.log(this.state.screenWidth);
 
 		if(this.props.resourcesToBeTraded.length > 1) {
 			
@@ -20,7 +25,8 @@ class Arrow extends Component {
 			const positionOfSecondResource = this.state.positions[this.props.resourcesToBeTraded[1]]
 			
 			
-			x2position = 643 + (positionOfSecondResource - positionOfFirstResource) * 101
+			x2position = + linePositions['x1position'] + (positionOfSecondResource - positionOfFirstResource) * linePositions['tileDistance']
+			
 		}
 
 		let arrow = <svg width="1100px" height="75px">
@@ -32,7 +38,7 @@ class Arrow extends Component {
 								<path d="M0,0 L0,6 L5,3 z" fill="#fff" />
 							</marker>
 						</defs>
-						<line x1="643" y1="47" x2={x2position} y2="47" stroke="#fff" strokeWidth="3" markerStart={"url(#spot-" + this.props.id+")"} markerEnd={markerEnd} />
+						<line x1={linePositions['x1position']} y1={linePositions['y1position']} x2={x2position} y2={linePositions['y1position']} stroke="#fff" strokeWidth="3" markerStart={"url(#spot-" + this.props.id+")"} markerEnd={markerEnd} />
 					</svg>
 
 			
